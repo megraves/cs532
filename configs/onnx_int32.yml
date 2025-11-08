@@ -1,0 +1,11 @@
+model:
+  path: "models/squeezenet.onnx"
+  use_gpu: true
+
+data:
+  csv_path: "data/imagenette2/noisy_imagenette.csv"
+  root: "data/imagenette2"
+  class_mapping: "data/imagenette2/index_to_class.txt"
+  num_random_images: 4                        
+  batch_size: 4                               
+  num_workers: 0                              
