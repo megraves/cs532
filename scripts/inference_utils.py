@@ -47,24 +47,23 @@ def get_model_input_details(session: ort.InferenceSession) -> tuple[str, int | N
     return input_name, dynamic_batch, C, H, W
 
 
-def run_onnx_inference(session: ort.InferenceSession, dataloader: DataLoader, input_name: str = None) -> NDArray[np.float32]:
+def run_onnx_inference(session: ort.InferenceSession, batch: NDArray[np.float32], input_name: str = None) -> NDArray[np.float32]:
     """
-    Run batched inference and return model outputs as a NumPy array.
+    Run inference on a single batch and return model outputs as a NumPy array.
     Args:
         session (ort.InferenceSession): The ONNX Runtime inference session.
-        dataloader (DataLoader): DataLoader providing input batches.
-        input_name (str, optional): Name of the model input. If None, uses the first input.
+        batch (NDArray[np.float32]): Input batch data.
+        input_name (str, optional): Name of the model input node. If None, uses the first input.
     Returns:
-        np.ndarray: Model outputs as a NumPy array.
+        NDArray[np.float32]: Model outputs.
     """
-    all_outputs = []
-
     if input_name is None:
         input_name = session.get_inputs()[0].name
 
-    for batch in dataloader:
+    if hasattr(batch, "numpy"):
         batch_np = batch.numpy().astype(np.float32)
-        outputs = session.run(None, {input_name: batch_np})
-        all_outputs.extend(outputs[0])
+    else:
+        batch_np = np.ascontiguousarray(batch, dtype=np.float32)
 
-    return np.array(all_outputs)
+    outputs = session.run(None, {input_name: batch_np})
+    return outputs[0]  # Assuming single output

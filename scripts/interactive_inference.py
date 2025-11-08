@@ -6,11 +6,8 @@ from utils import load_config, get_random_images_from_csv, get_class_name, load_
 
 
 def interactive_inference(config_path: str) -> None:
-    """ Run interactive inference on random images from a dataset.
+    """Run interactive inference on random images from a dataset, handling both NCHW and NHWC models."""
     
-    Args:
-        config_path (str): Path to the configuration YAML file.
-    """
     config = load_config(config_path)
 
     model_path = config["model"]["path"]
@@ -30,23 +27,47 @@ def interactive_inference(config_path: str) -> None:
     for path in image_paths:
         print("  -", path)
 
+    # Create ONNX session
     session = create_onnx_session(model_path, use_gpu=use_gpu)
-    input_name, batch_dim, C, H, W = get_model_input_details(session)
+    input_name, batch_dim, C_model, H_model, W_model = get_model_input_details(session)
+    print(f"Model input: name='{input_name}', shape=(N={batch_dim or 'dynamic'}, C={C_model}, H={H_model}, W={W_model})")
 
     if batch_dim is not None:
         batch_size = batch_dim
 
+    model_format = "NHWC" if W_model == 3 or H_model == 3 else "NCHW"
+
+    # Load images
     dataloader = get_dataloader(
         image_paths=image_paths,
         batch_size=batch_size,
         num_workers=num_workers,
     )
 
-    outputs = run_onnx_inference(session, dataloader)
+    outputs = []
 
-    # Create a resizable window and set its initial size
+    for batch in dataloader:
+        # Ensure batch is 4D
+        if batch.ndim == 3:
+            batch = np.expand_dims(batch, axis=0)
+
+        batch_np = np.ascontiguousarray(batch, dtype=np.float32)
+
+        # Dynamically transpose to match model format
+        N, D1, D2, D3 = batch_np.shape
+        if model_format == "NCHW" and (D1, D2, D3) != (C_model, H_model, W_model):
+            batch_np = batch_np.transpose(0, 3, 1, 2)  # NHWC -> NCHW
+            print(f"Transposed batch NHWC -> NCHW: {batch_np.shape}")
+        elif model_format == "NHWC" and (D1, D2, D3) != (H_model, W_model, C_model):
+            batch_np = batch_np.transpose(0, 2, 3, 1)  # NCHW -> NHWC
+            print(f"Transposed batch NCHW -> NHWC: {batch_np.shape}")
+
+        batch_outputs = run_onnx_inference(session, batch_np, input_name=input_name)
+        outputs.extend(batch_outputs)
+
+    # Interactive display
     cv2.namedWindow("Interactive Inference", cv2.WINDOW_NORMAL)
-    cv2.resizeWindow("Interactive Inference", 1200, 800)  # Adjust width and height as needed
+    cv2.resizeWindow("Interactive Inference", 1200, 800)
 
     idx = 0
     while True:
@@ -57,16 +78,14 @@ def interactive_inference(config_path: str) -> None:
         img = cv2.imread(image_paths[idx])
         display_img = img.copy()
 
-        # Reduced font size and thickness further
         cv2.putText(display_img,
                     f"Predicted: {class_name} ({pred_index})",
                     (10, 30), cv2.FONT_HERSHEY_SIMPLEX,
-                    0.4, (0, 255, 0), 1, cv2.LINE_AA)
+                    0.5, (0, 255, 0), 1, cv2.LINE_AA)
 
         cv2.imshow("Interactive Inference", display_img)
 
         key = cv2.waitKey(0) & 0xFF
-
         if key == ord('q'):
             break
         elif key == 81:  # Left arrow
