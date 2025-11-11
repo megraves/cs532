@@ -1,0 +1,11 @@
+model:
+  name: squeezenet1_1
+  use_gpu: true 
+
+data:
+  csv_path: "data/imagenette2/noisy_imagenette.csv"
+  root: "data/imagenette2"
+  num_random_images: 5
+  batch_size: 4
+  num_workers: 2
+  class_mapping: data/imagenette2/index_to_class.txt
