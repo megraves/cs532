@@ -78,7 +78,12 @@ async def load_model():
     
     # Load class mapping
     if os.path.exists(class_mapping_file):
-        class_mapping = load_class_mapping(class_mapping_file)
+        try:
+            class_mapping = load_class_mapping(class_mapping_file)
+        except (ValueError, Exception) as e:
+            print(f"Warning: Could not load class mapping from {class_mapping_file}: {e}")
+            print("Continuing without class mapping - predictions will show class indices only")
+            class_mapping = {}
     else:
         print(f"Warning: Class mapping file not found: {class_mapping_file}")
         class_mapping = {}

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # ONNX INT8 Model Service
   onnx-int8-api:
@@ -49,28 +47,28 @@ services:
       timeout: 10s
       retries: 3
 
-  # PyTorch Model Service
-  torch-api:
-    build:
-      context: .
-      dockerfile: dockerfiles/Dockerfile.torch
-    container_name: torch-api
-    ports:
-      - "8001:8001"
-    environment:
-      - MODEL_NAME=squeezenet1_1
-      - USE_GPU=false
-      - CLASS_MAPPING=data/imagenette2/index_to_class.txt
-      - PORT=8001
-    volumes:
-      - ./data:/app/data:ro
-    networks:
-      - model-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+  # PyTorch Model Service (commented out - only using ONNX models)
+  # torch-api:
+  #   build:
+  #     context: .
+  #     dockerfile: dockerfiles/Dockerfile.torch
+  #   container_name: torch-api
+  #   ports:
+  #     - "8001:8001"
+  #   environment:
+  #     - MODEL_NAME=squeezenet1_1
+  #     - USE_GPU=false
+  #     - CLASS_MAPPING=data/imagenette2/index_to_class.txt
+  #     - PORT=8001
+  #   volumes:
+  #     - ./data:/app/data:ro
+  #   networks:
+  #     - model-network
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
 
   # Coordinator API
   coordinator-api:
@@ -88,7 +86,7 @@ services:
     depends_on:
       - onnx-int8-api
       - onnx-int32-api
-      - torch-api
+      # - torch-api  # Commented out - only using ONNX models
     networks:
       - model-network
     healthcheck:
