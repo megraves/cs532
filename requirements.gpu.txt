@@ -1,0 +1,5 @@
+-r requirements.common.txt
+onnxruntime-gpu==1.23.2
+torch==2.7.1
+torchvision==0.22.1
+

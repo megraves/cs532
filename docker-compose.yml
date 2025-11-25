@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: dockerfiles/Dockerfile.onnx
+      args:
+        - INSTALL_GPU_DEPS=false
     container_name: onnx-int8-api
     ports:
       - "8000:8000"
@@ -28,6 +30,8 @@ services:
     build:
       context: .
       dockerfile: dockerfiles/Dockerfile.onnx
+      args:
+        - INSTALL_GPU_DEPS=false
     container_name: onnx-int32-api
     ports:
       - "8003:8000"
@@ -47,28 +51,30 @@ services:
       timeout: 10s
       retries: 3
 
-  # PyTorch Model Service (commented out - only using ONNX models)
-  # torch-api:
-  #   build:
-  #     context: .
-  #     dockerfile: dockerfiles/Dockerfile.torch
-  #   container_name: torch-api
-  #   ports:
-  #     - "8001:8001"
-  #   environment:
-  #     - MODEL_NAME=squeezenet1_1
-  #     - USE_GPU=false
-  #     - CLASS_MAPPING=data/imagenette2/index_to_class.txt
-  #     - PORT=8001
-  #   volumes:
-  #     - ./data:/app/data:ro
-  #   networks:
-  #     - model-network
-  #   healthcheck:
-  #     test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 3
+  # PyTorch Model Service
+  torch-api:
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile.torch
+      args:
+        - INSTALL_GPU_DEPS=false
+    container_name: torch-api
+    ports:
+      - "8001:8001"
+    environment:
+      - MODEL_NAME=squeezenet1_1
+      - USE_GPU=false
+      - CLASS_MAPPING=data/imagenette2/index_to_class.txt
+      - PORT=8001
+    volumes:
+      - ./data:/app/data:ro
+    networks:
+      - model-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   # Coordinator API
   coordinator-api:
@@ -86,7 +92,7 @@ services:
     depends_on:
       - onnx-int8-api
       - onnx-int32-api
-      # - torch-api  # Commented out - only using ONNX models
+      - torch-api
     networks:
       - model-network
     healthcheck:

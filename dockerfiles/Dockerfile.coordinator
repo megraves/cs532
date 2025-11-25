@@ -11,8 +11,12 @@ RUN apt-get update && apt-get install -y \
 # Install FastAPI and dependencies
 RUN pip install --no-cache-dir fastapi uvicorn python-multipart httpx
 
-# Copy application code
+# Create required directories
+RUN mkdir -p /app/api
+
+# Copy only the files needed by the Coordinator API
 COPY api/coordinator_api.py /app/api/coordinator_api.py
+COPY api/__init__.py /app/api/__init__.py
 
 # Set environment variables
 ENV PYTHONPATH=/app
