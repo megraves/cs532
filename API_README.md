@@ -21,7 +21,7 @@ docker-compose up --build
 This will:
 - Build Docker images for all services
 - Start all containers
-- Set up networking between containers
+- Set up networking between container
 
 ### 2. Check Service Health
 

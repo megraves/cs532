@@ -1,0 +1,13 @@
+{
+  "requests": 2000,
+  "errors": 0,
+  "total_time_sec": 33.25371262500994,
+  "rps": 60.143660425326786,
+  "latency_ms_mean": 132.53277213481488,
+  "latency_ms_p50": 112.41045797942206,
+  "latency_ms_p95": 188.42575410963033,
+  "latency_ms_p99": 423.6856136715504,
+  "latency_ms_min": 25.352791999466717,
+  "latency_ms_max": 3886.382207972929
+}
+Saved latencies -> /Users/harshitavidapanakal/Documents/Coursework/Fall2025/532/Project/cs532/latencies.npy
