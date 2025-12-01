@@ -3,7 +3,7 @@ This README explains how to reproduce the ONNX INT8, ONNX INT32, and PyTorch ben
 
 ---
 
-## 📂 Project Structure Requirements
+## Project Structure Requirements
 Before running, ensure the following exist:
 
 ```
@@ -309,5 +309,3 @@ experiments/
 ```
 
 ---
-
-# End of README
