@@ -134,6 +134,19 @@ python tools/bench/benchmark_client.py \
   > experiments/onnx_int8_run1/bench.json 2>&1
 ```
 
+For batching requests, 
+```
+python tools/bench/benchmark_client.py \
+  --url http://localhost:8000/predict \
+  --image-dir data/imagenette2/val/n01440764 \
+  --batch-size 4 \
+  --concurrency 8 \
+  --requests 500 \
+  --payload-type multipart \
+  --randomize \
+  --save-latencies \
+```
+
 Move latencies file:
 
 ```
@@ -309,3 +322,4 @@ experiments/
 ```
 
 ---
+

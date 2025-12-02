@@ -10,8 +10,12 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import JSONResponse
 from PIL import Image
 import io
-from typing import Optional
+from typing import Optional, List
 import uvicorn
+import logging
+
+DEBUG_BATCH = os.getenv("DEBUG_BATCH", "0") == "1"
+logger = logging.getLogger("uvicorn.error")
 
 # Add scripts directory to path
 scripts_path = os.path.join(os.path.dirname(__file__), '..', 'scripts')
@@ -107,41 +111,25 @@ async def health():
 async def predict(file: UploadFile = File(...)):
     """
     Predict class for an uploaded image.
-    
-    Args:
-        file: Image file (JPEG, PNG, etc.)
-    
-    Returns:
-        JSON response with prediction results
     """
     if model is None:
         raise HTTPException(status_code=503, detail="Model not loaded")
     
     try:
-        # Read image bytes
         image_bytes = await file.read()
-        
-        # Preprocess image
         image_tensor = preprocess_image_for_api(image_bytes)
-        
-        # Add batch dimension if needed
         if image_tensor.ndim == 3:
             image_tensor = image_tensor.unsqueeze(0)
-        
-        # Move to device
         image_tensor = image_tensor.to(device)
-        
-        # Run inference
+
         with torch.no_grad():
             output = model(image_tensor)
             output_np = output.cpu().numpy()
-        
-        # Get prediction
+
         pred_index = int(np.argmax(output_np[0]))
         confidence = float(np.max(output_np[0]))
         class_name = get_class_name(pred_index, class_mapping) if class_mapping else f"Class_{pred_index}"
         
-        # Get top 5 predictions
         top5_indices = np.argsort(output_np[0])[-5:][::-1]
         top5_predictions = [
             {
@@ -164,60 +152,113 @@ async def predict(file: UploadFile = File(...)):
 
 
 @app.post("/predict/batch")
-async def predict_batch(files: list[UploadFile] = File(...)):
+async def predict_batch(files: List[UploadFile] = File(...)):
     """
-    Predict classes for multiple uploaded images.
-    
-    Args:
-        files: List of image files
-    
-    Returns:
-        JSON response with predictions for each image
+    Predict classes for multiple uploaded images with a single batched model forward pass.
     """
     if model is None:
         raise HTTPException(status_code=503, detail="Model not loaded")
-    
+
+    if not files:
+        raise HTTPException(status_code=400, detail="No files uploaded")
+
     try:
-        results = []
-        
+        tensors = []
+        filenames = []
+        checksums = []
+
+        # Read & preprocess all files first
         for file in files:
-            # Read image bytes
             image_bytes = await file.read()
-            
-            # Preprocess image
-            image_tensor = preprocess_image_for_api(image_bytes)
-            
-            # Add batch dimension if needed
-            if image_tensor.ndim == 3:
-                image_tensor = image_tensor.unsqueeze(0)
-            
-            # Move to device
-            image_tensor = image_tensor.to(device)
-            
-            # Run inference
-            with torch.no_grad():
-                output = model(image_tensor)
-                output_np = output.cpu().numpy()
-            
-            # Get prediction
-            pred_index = int(np.argmax(output_np[0]))
-            confidence = float(np.max(output_np[0]))
+            img_tensor = preprocess_image_for_api(image_bytes)
+            if img_tensor is None:
+                raise HTTPException(status_code=400, detail=f"Preprocess failed for {file.filename}")
+
+            # If preprocess returned a batch (N,C,H,W), accept only single-image batch
+            if img_tensor.ndim == 4:
+                if img_tensor.shape[0] != 1:
+                    raise HTTPException(status_code=400, detail=f"Preprocess returned unexpected batch size for {file.filename}")
+                img_tensor = img_tensor.squeeze(0)
+
+            if img_tensor.ndim != 3:
+                raise HTTPException(status_code=400, detail=f"Preprocess returned tensor with ndim={img_tensor.ndim} for {file.filename}, expected 3 (C,H,W)")
+
+            if not torch.is_tensor(img_tensor):
+                img_tensor = torch.tensor(img_tensor)
+
+            img_tensor = img_tensor.to(dtype=torch.float32)
+
+            tensors.append(img_tensor)
+            filenames.append(file.filename)
+
+            try:
+                checksums.append(int(float(img_tensor.sum().item())))
+            except Exception:
+                checksums.append(None)
+
+            await file.close()
+
+        # ensure same shape
+        shapes = [tuple(t.shape) for t in tensors]
+        if len(set(shapes)) != 1:
+            raise HTTPException(status_code=400, detail=f"Inconsistent image shapes after preprocessing: {shapes}")
+
+        # Stack into a single batch: (N, C, H, W)
+        batch_tensor = torch.stack(tensors, dim=0)
+        batch_tensor = batch_tensor.to(device)
+
+        # Run inference once
+        model.eval()
+        with torch.no_grad():
+            outputs = model(batch_tensor)
+            if isinstance(outputs, (tuple, list)):
+                outputs = outputs[0]
+            outputs_np = outputs.cpu().numpy()
+
+        if outputs_np.shape[0] != len(filenames):
+            logger.error("outputs length mismatch", extra={
+                "n_filenames": len(filenames),
+                "outputs_shape": outputs_np.shape
+            })
+            raise HTTPException(status_code=500, detail=f"Model output count ({outputs_np.shape[0]}) does not match input count ({len(filenames)})")
+
+        # Map outputs to results
+        results = []
+        for i, fname in enumerate(filenames):
+            out_i = outputs_np[i]
+            out_vec = out_i.reshape(-1) if out_i.ndim > 1 else out_i
+            pred_index = int(np.argmax(out_vec))
+            confidence = float(np.max(out_vec))
             class_name = get_class_name(pred_index, class_mapping) if class_mapping else f"Class_{pred_index}"
-            
-            results.append({
-                "filename": file.filename,
+
+            entry = {
+                "filename": fname,
                 "predicted_class_index": pred_index,
                 "predicted_class_name": class_name,
                 "confidence": confidence
-            })
-        
-        return JSONResponse({"predictions": results})
-        
+            }
+            if DEBUG_BATCH:
+                entry["input_shape"] = shapes[i]
+                entry["checksum"] = checksums[i]
+            results.append(entry)
+
+        response = {"predictions": results}
+        if DEBUG_BATCH:
+            response["debug"] = {
+                "batch_shape": tuple(batch_tensor.shape),
+                "n_inputs": len(filenames),
+                "dtype": str(batch_tensor.dtype)
+            }
+
+        return JSONResponse(response)
+
+    except HTTPException:
+        raise
     except Exception as e:
+        logger.exception("Batch prediction error")
         raise HTTPException(status_code=500, detail=f"Batch prediction error: {str(e)}")
 
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8001))
     uvicorn.run(app, host="0.0.0.0", port=port)
-

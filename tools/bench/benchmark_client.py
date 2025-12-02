@@ -115,35 +115,55 @@ def build_json_payloads_from_dir(image_dir, batch_size=1, randomize=False):
     imgs = load_jpeg_images(image_dir, randomize)
     payloads = []
 
-    for path in imgs:
-        b = base64.b64encode(Path(path).read_bytes()).decode("ascii")
-
-        if batch_size == 1:
+    if batch_size == 1:
+        for path in imgs:
+            b = base64.b64encode(Path(path).read_bytes()).decode("ascii")
             payloads.append(({"image": b}, None))
+    else:
+        if randomize:
+            # create many payloads each with batch_size distinct random images
+            for _ in range(len(imgs)):
+                chosen = random.sample(imgs, batch_size)
+                b64s = [base64.b64encode(Path(p).read_bytes()).decode("ascii") for p in chosen]
+                payloads.append(({"images": b64s}, None))
         else:
-            payloads.append(({"images": [b]*batch_size}, None))
+            # deterministic chunking, wrapping if necessary
+            n = len(imgs)
+            for i in range(0, n, batch_size):
+                chunk = [imgs[(i + j) % n] for j in range(batch_size)]
+                b64s = [base64.b64encode(Path(p).read_bytes()).decode("ascii") for p in chunk]
+                payloads.append(({"images": b64s}, None))
 
     return payloads
 
 
 def build_multipart_payloads_from_dir(image_dir, batch_size=1, randomize=False):
+    """
+    Returns list of payloads: each is (None, files_list)
+    files_list must be a list of tuples:
+      [("files", (filename, bytes, "image/jpeg")), ...]
+    """
     imgs = load_jpeg_images(image_dir, randomize)
     payloads = []
 
-    for path in imgs:
-        if batch_size == 1:
-            files = {"file": (Path(path).name, Path(path).read_bytes(), "image/jpeg")}
+    if batch_size == 1:
+        for path in imgs:
+            files = [("files", (Path(path).name, Path(path).read_bytes(), "image/jpeg"))]
             payloads.append((None, files))
+    else:
+        if randomize:
+            for _ in range(len(imgs)):
+                chosen = random.sample(imgs, batch_size)
+                files = [("files", (Path(p).name, Path(p).read_bytes(), "image/jpeg")) for p in chosen]
+                payloads.append((None, files))
         else:
-            batch_files = []
-            for _ in range(batch_size):
-                batch_files.append(
-                    ("file", (Path(path).name, Path(path).read_bytes(), "image/jpeg"))
-                )
-            payloads.append((None, batch_files))
+            n = len(imgs)
+            for i in range(0, n, batch_size):
+                chunk = [imgs[(i + j) % n] for j in range(batch_size)]
+                files = [("files", (Path(p).name, Path(p).read_bytes(), "image/jpeg")) for p in chunk]
+                payloads.append((None, files))
 
     return payloads
-
 
 # ---------------------------
 # Main
