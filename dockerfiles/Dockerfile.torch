@@ -1,47 +1,35 @@
-FROM python:3.10-slim
+FROM nvcr.io/nvidia/pytorch:24.09-py3
 
-# Set working directory
 WORKDIR /app
 
-# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    libgl1 \
-    libglib2.0-0 \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+    python3-dev libgl1 libglib2.0-0 curl && \
+    rm -rf /var/lib/apt/lists/*
 
-# Copy requirements manifests
 COPY requirements.common.txt requirements.cpu.txt requirements.gpu.txt /tmp/
 
-# Install dependencies based on build target
 ARG INSTALL_GPU_DEPS=false
-ARG NVIDIA_INDEX=https://pypi.nvidia.com
+
 RUN if [ "$INSTALL_GPU_DEPS" = "true" ]; then \
+        pip install --no-cache-dir -r /tmp/requirements.gpu.txt && \
         pip install --no-cache-dir \
-            --extra-index-url $NVIDIA_INDEX \
-            -r /tmp/requirements.gpu.txt ; \
+            --index-url https://download.pytorch.org/whl/cu124 \
+            torch==2.6.0 torchvision==0.21.0 ; \
     else \
-        pip install --no-cache-dir \
-            -r /tmp/requirements.cpu.txt ; \
+        pip install --no-cache-dir -r /tmp/requirements.cpu.txt ; \
     fi
 
-# Create required directories
+RUN pip install --no-cache-dir fastapi uvicorn python-multipart httpx
+
 RUN mkdir -p /app/api /app/scripts /app/data/imagenette2 /app/configs
 
-# Copy only the files needed by the Torch API
-COPY api/torch_api.py /app/api/torch_api.py
-COPY api/__init__.py /app/api/__init__.py
-COPY scripts/utils.py /app/scripts/utils.py
-COPY data/imagenette2/index_to_class.txt /app/data/imagenette2/index_to_class.txt
+COPY api/torch_api.py /app/api/
+COPY api/__init__.py /app/api/
+COPY scripts/ /app/scripts/
+COPY data/imagenette2/index_to_class.txt /app/data/imagenette2/
 COPY configs/ /app/configs/
 
-# Set environment variables
 ENV PYTHONPATH=/app:/app/scripts
-ENV PORT=8001
-
-# Expose port
 EXPOSE 8001
 
-# Run the API server
-CMD ["python", "api/torch_api.py"]
-
+CMD ["python3", "api/torch_api.py"]
