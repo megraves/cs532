@@ -1,0 +1,33 @@
+FROM nvcr.io/nvidia/pytorch:24.09-py3
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    python3-dev libgl1 libglib2.0-0 curl && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY requirements.common.txt requirements.cpu.txt requirements.gpu.txt /tmp/
+
+ARG INSTALL_GPU_DEPS=false
+
+RUN if [ "$INSTALL_GPU_DEPS" = "true" ]; then \
+        pip install --no-cache-dir -r /tmp/requirements.gpu.txt ; \
+    else \
+        pip install --no-cache-dir -r /tmp/requirements.cpu.txt ; \
+    fi
+
+RUN pip install --no-cache-dir fastapi uvicorn python-multipart httpx
+
+RUN mkdir -p /app/api /app/scripts /app/models /app/data/imagenette2 /app/configs
+
+COPY api/onnx_api.py /app/api/
+COPY api/__init__.py /app/api/
+COPY scripts/ /app/scripts/
+COPY models/ /app/models/
+COPY data/imagenette2/index_to_class.txt /app/data/imagenette2/
+COPY configs/ /app/configs/
+
+ENV PYTHONPATH=/app:/app/scripts
+EXPOSE 8000
+
+CMD ["python", "api/onnx_api.py"]
