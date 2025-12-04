@@ -5,7 +5,7 @@ services:
   onnx-int8-api:
     build:
       context: .
-      dockerfile: dockerfiles/Dockerfile.onnx
+      dockerfile: dockerfiles/Dockerfile.onnx.gpu
       args:
         INSTALL_GPU_DEPS: "true"
     container_name: onnx-int8-api
@@ -26,7 +26,7 @@ services:
   onnx-int32-api:
     build:
       context: .
-      dockerfile: dockerfiles/Dockerfile.onnx
+      dockerfile: dockerfiles/Dockerfile.onnx.gpu
       args:
         INSTALL_GPU_DEPS: "true"
     container_name: onnx-int32-api
@@ -47,7 +47,7 @@ services:
   torch-api:
     build:
       context: .
-      dockerfile: dockerfiles/Dockerfile.torch
+      dockerfile: dockerfiles/Dockerfile.torch.gpu
       args:
         INSTALL_GPU_DEPS: "true"
     container_name: torch-api
