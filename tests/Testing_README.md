@@ -86,17 +86,3 @@ When adding new tests:
 4. Mock external dependencies (model loading, HTTP requests, etc.) for unit tests
 5. Use descriptive test names that explain what is being tested
 
-## Example Test
-
-```python
-import pytest
-from scripts.utils import load_config
-
-class TestMyFunction:
-    def test_my_function_success(self, sample_config_file):
-        """Test that my function works correctly."""
-        result = load_config(sample_config_file)
-        assert result is not None
-        assert isinstance(result, dict)
-```
-
