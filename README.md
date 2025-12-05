@@ -1,54 +1,94 @@
-# COMPSCI 532 Project Proposal
+# Containerized ML Inference System
 
-## 1 Introduction
+A containerized machine learning inference system using pre-trained SqueezeNet models. The system provides RESTful APIs for running inference with ONNX (INT8 and INT32) and PyTorch models, each running in isolated Docker containers.
 
-This project aims to build a containerized machine learning inference system using pre-trained models. Each model will run inside its own isolated Docker container, exposing a RESTful API endpoint for inference. The core objective is to demonstrate best practices in packaging, deploying, and managing ML models as isolated services with reproducible environments. The focus is on practical systems aspects such as latency, throughput, resource utilization, container isolation, and reliability..
+## Project Overview
 
-## 2 Dataset
+This project demonstrates best practices in packaging, deploying, and managing ML models as isolated services with reproducible environments. The system includes:
+- **ONNX INT8 API** - Quantized INT8 ONNX model service
+- **ONNX INT32 API** - Standard INT32 ONNX model service  
+- **PyTorch API** - Native PyTorch model service
+- **Coordinator API** - Routes requests to appropriate model services
 
-The project will utilize a subset of the ImageNet dataset, specifically the ImageNet Large Scale Visual Recognition Challenge (ILSVRC) 2012–2017 image classification subset, which is the most commonly used and well-curated portion of ImageNet for benchmarking image classification models. We utilize a subset of the ImageNet validation dataset (100–500 images) to benchmark SqueezeNet inference.
+## Documentation
 
-## 3 Milestone Goals
+This project includes three comprehensive documentation files:
 
-1. **Model Preparation and Validation**  
-   * Obtain pre-trained SqueezeNet models in ONNX and PyTorch formats.  
-   * Validate inference correctness on sample images.  
-2. **API and Container Development**  
-   * Implement inference APIs for each model container using lightweight frameworks.  
-   * Ensure each container independently loads its model and exposes a unique prediction endpoint.  
-3. **Containerization and Deployment**  
-   * Build a coordinator API to route requests to appropriate model containers.  
-   * Dockerize the model services with isolated environments and dependencies.  
-4. **Performance Measurement Setup**  
-   * Develop benchmarking REST client for latency, throughput, and resource usage under varying request loads and concurrency.  
-   * Monitor CPU, memory, and network utilization per container using system tools  
-5. **Stress Testing and Reliability Experiments**  
-   * Conduct stress tests with multiple concurrent clients.  
-   * **ONNX Conversion**: Assessing the performance impact of ONNX format versus running them in their native frameworks.  
-   * **Quantization**: Measuring latency, throughput, and accuracy changes resulting from model quantization.  
-   * **Batching Strategies**: Evaluating the performance improvements achieved through batching inference requests.
+### 📖 [How to Run](API_README.md)
+**Location:** `API_README.md`
 
-## 4 Technologies
+Complete guide for running the system, including:
+- Building and starting Docker containers
+- API endpoints and usage examples
+- Environment variables and configuration
+- Troubleshooting common issues
 
-1. SqueezeNet Pre-Trained Models \- Using pre-trained SqueezeNet models in ONNX (INT8 quantized) and PyTorch formats for inference tasks.  
-2. PyTorch \- Popular deep learning framework to run and serve the native SqueezeNet model, enabling comparison with ONNX versions.  
-3. Docker \- Containerization technology used to package each model and its dependencies into isolated, reproducible environments for deployment and management.  
-4. Lightweight web frameworks to build RESTful API endpoints that expose model inference services to clients.  
-5. Python \- Programming language for model preprocessing, inference logic, API development, generating concurrent inference requests and performance benchmarking scripts.  
-6. Monitoring Tools \- System monitoring utilities to capture container CPU, memory, network usage, and resource isolation during benchmarking (e.g. docker stats).
+**Use this when:** You need to set up and run the inference services.
 
-## 
+---
 
-## 5 Deliverables/Expected Outcomes
+### 🧪 [How to Test](tests/Testing_README.md)
+**Location:** `tests/Testing_README.md`
 
-7. Containerized Model Services:  
-   Fully functional Docker containers, each encapsulating a pre-trained SqueezeNet model (ONNX INT8 quantized, and native PyTorch), with RESTful API endpoints for inference.  
-8. Inference API:  
-   Extendable and reusable REST API service to accept image data, perform preprocessing, invoke model inference, and return labeled predictions.  
-9. Benchmarking Framework:  
-   Scripts and tools to generate concurrent inference requests, measure latency, throughput, and monitor CPU/memory usage of containers under load.  
-10. Performance Analysis Report:  
-    Comprehensive documentation of latency (average and tail), throughput under varying concurrency, resource utilization, and reliability insights.  
-11. Reproducibility Artifacts:  
-    Clear instructions, Dockerfiles, and source code to reproduce the entire ML serving environment on different hosts.  
-    
+Testing documentation covering:
+- Running the test suite
+- Test file descriptions
+- Coverage and validation strategies
+
+**Use this when:** You need to verify the code works correctly.
+
+---
+
+### 📊 [Experiments](experiments/Experiments_README.md)
+**Location:** `experiments/Experiments_README.md`
+
+Step-by-step guide for reproducing performance experiments:
+- Benchmarking setup and execution
+- Resource monitoring (CPU, memory, network)
+- Performance analysis and results
+- Comparing ONNX vs PyTorch, quantization effects, and batching strategies
+
+**Use this when:** You need to reproduce performance measurements and experiments.
+
+---
+
+## Quick Start
+
+1. **Run the system:**
+   ```bash
+   docker-compose up --build
+   ```
+   See [API_README.md](API_README.md) for detailed instructions.
+
+2. **Run tests:**
+   ```bash
+   pip install -r requirements.common.txt
+   pytest
+   ```
+   See [tests/Testing_README.md](tests/Testing_README.md) for details.
+
+3. **Run experiments:**
+   Follow the guide in [experiments/Experiments_README.md](experiments/Experiments_README.md).
+
+## Project Structure
+
+```
+├── api/                    # API service implementations
+├── dockerfiles/            # Docker build files
+├── experiments/            # Experiment results and scripts
+├── models/                 # Model files (ONNX, PyTorch)
+├── scripts/                # Utility scripts
+├── tests/                  # Test suite
+├── tools/bench/            # Benchmarking tools
+├── API_README.md           # How to run documentation
+├── tests/Testing_README.md # Testing documentation
+└── experiments/Experiments_README.md # Experiments documentation
+```
+
+## Technologies
+
+- **SqueezeNet** - Pre-trained models in ONNX (INT8/INT32) and PyTorch formats
+- **Docker** - Containerization for isolated model services
+- **FastAPI** - RESTful API framework
+- **ONNX Runtime** - ONNX model inference
+- **PyTorch** - Native PyTorch model inference
