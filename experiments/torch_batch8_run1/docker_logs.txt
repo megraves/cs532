@@ -1,323 +1,0 @@
-/app/api/torch_api.py:49: DeprecationWarning: 
-        on_event is deprecated, use lifespan event handlers instead.
-
-        Read more about it in the
-        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
-        
-  @app.on_event("startup")
-INFO:     Started server process [1]
-INFO:     Waiting for application startup.
-/usr/local/lib/python3.10/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
-  warnings.warn(
-/usr/local/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=SqueezeNet1_1_Weights.IMAGENET1K_V1`. You can also use `weights=SqueezeNet1_1_Weights.DEFAULT` to get the most up-to-date weights.
-  warnings.warn(msg)
-2.6%5.3%7.9%10.6%13.2%15.9%18.5%21.1%23.8%26.4%29.1%31.7%34.4%37.0%39.6%42.3%44.9%47.6%50.2%52.9%55.5%58.2%60.8%63.4%66.1%68.7%71.4%74.0%76.7%79.3%81.9%84.6%87.2%89.9%92.5%95.2%97.8%100.0%
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
-Loading PyTorch model: squeezenet1_1
-Using GPU: False
-Using device: cpu
-Downloading: "https://download.pytorch.org/models/squeezenet1_1-b8a52dc0.pth" to /root/.cache/torch/hub/checkpoints/squeezenet1_1-b8a52dc0.pth
-Model loaded successfully!
-INFO:     127.0.0.1:33016 - "GET /health HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:61648 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34844 - "GET /health HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56140 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56132 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56082 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56100 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56128 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56096 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56112 - "POST /predict HTTP/1.1" 200 OK
-INFO:     172.19.0.1:56146 - "POST /predict HTTP/1.1" 200 OK

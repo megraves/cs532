@@ -1,0 +1,13 @@
+{
+  "requests": 50,
+  "errors": 0,
+  "total_time_sec": 0.24501068199970177,
+  "rps": 204.07273508206006,
+  "latency_ms_mean": 4.895939420093782,
+  "latency_ms_p50": 3.7038259997643763,
+  "latency_ms_p95": 10.352420300114309,
+  "latency_ms_p99": 25.843042069063763,
+  "latency_ms_min": 3.1775989991729148,
+  "latency_ms_max": 37.47096599909128
+}
+Saved latencies -> /mnt/c/Users/HIMANSHU/Downloads/CS532/project/cs532/latencies.npy
