@@ -1,33 +1,52 @@
-FROM nvcr.io/nvidia/pytorch:24.09-py3
+FROM python:3.10-slim
 
+# Set working directory
 WORKDIR /app
 
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    python3-dev libgl1 libglib2.0-0 curl && \
-    rm -rf /var/lib/apt/lists/*
+    libgl1 \
+    libglib2.0-0 \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
+# Copy requirements manifests
 COPY requirements.common.txt requirements.cpu.txt requirements.gpu.txt /tmp/
 
+# Install dependencies based on build target
 ARG INSTALL_GPU_DEPS=false
-
+ARG NVIDIA_INDEX=https://pypi.nvidia.com
 RUN if [ "$INSTALL_GPU_DEPS" = "true" ]; then \
-        pip install --no-cache-dir -r /tmp/requirements.gpu.txt ; \
+        pip install --no-cache-dir \
+            --extra-index-url $NVIDIA_INDEX \
+            -r /tmp/requirements.gpu.txt ; \
     else \
-        pip install --no-cache-dir -r /tmp/requirements.cpu.txt ; \
+        pip install --no-cache-dir \
+            -r /tmp/requirements.cpu.txt ; \
     fi
 
+# Install FastAPI and uvicorn
 RUN pip install --no-cache-dir fastapi uvicorn python-multipart httpx
 
+# Create required directories
 RUN mkdir -p /app/api /app/scripts /app/models /app/data/imagenette2 /app/configs
 
-COPY api/onnx_api.py /app/api/
-COPY api/__init__.py /app/api/
-COPY scripts/ /app/scripts/
+# Copy only the files needed by the ONNX API
+COPY api/onnx_api.py /app/api/onnx_api.py
+COPY api/__init__.py /app/api/__init__.py
+COPY scripts/inference_utils.py /app/scripts/inference_utils.py
+COPY scripts/utils.py /app/scripts/utils.py
 COPY models/ /app/models/
-COPY data/imagenette2/index_to_class.txt /app/data/imagenette2/
+COPY data/imagenette2/index_to_class.txt /app/data/imagenette2/index_to_class.txt
 COPY configs/ /app/configs/
 
+# Set environment variables
 ENV PYTHONPATH=/app:/app/scripts
+ENV PORT=8000
+
+# Expose port
 EXPOSE 8000
 
+# Run the API server
 CMD ["python", "api/onnx_api.py"]
+

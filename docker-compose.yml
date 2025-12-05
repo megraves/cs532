@@ -1,88 +1,107 @@
-version: "3.9"
-
 services:
-
+  # ONNX INT8 Model Service
   onnx-int8-api:
     build:
       context: .
       dockerfile: dockerfiles/Dockerfile.onnx
       args:
-        INSTALL_GPU_DEPS: "true"
+        - INSTALL_GPU_DEPS=false
     container_name: onnx-int8-api
-    runtime: nvidia
-    environment:
-      MODEL_PATH: "models/SqueezeNet_int8.onnx"
-      USE_GPU: "true"
-      NVIDIA_VISIBLE_DEVICES: "all"
-      NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
     ports:
       - "8000:8000"
+    environment:
+      - MODEL_PATH=models/SqueezeNet_int8.onnx
+      - USE_GPU=false
+      - CLASS_MAPPING=data/imagenette2/index_to_class.txt
+      - PORT=8000
     volumes:
       - ./models:/app/models:ro
       - ./data:/app/data:ro
     networks:
       - model-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
+  # ONNX INT32 Model Service
   onnx-int32-api:
     build:
       context: .
       dockerfile: dockerfiles/Dockerfile.onnx
       args:
-        INSTALL_GPU_DEPS: "true"
+        - INSTALL_GPU_DEPS=false
     container_name: onnx-int32-api
-    runtime: nvidia
-    environment:
-      MODEL_PATH: "models/squeezenet.onnx"
-      USE_GPU: "true"
-      NVIDIA_VISIBLE_DEVICES: "all"
-      NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
     ports:
       - "8003:8000"
+    environment:
+      - MODEL_PATH=models/squeezenet.onnx
+      - USE_GPU=false
+      - CLASS_MAPPING=data/imagenette2/index_to_class.txt
+      - PORT=8000
     volumes:
       - ./models:/app/models:ro
       - ./data:/app/data:ro
     networks:
       - model-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
+  # PyTorch Model Service
   torch-api:
     build:
       context: .
       dockerfile: dockerfiles/Dockerfile.torch
       args:
-        INSTALL_GPU_DEPS: "true"
+        - INSTALL_GPU_DEPS=false
     container_name: torch-api
-    runtime: nvidia
-    environment:
-      MODEL_NAME: "squeezenet1_1"
-      USE_GPU: "true"
-      NVIDIA_VISIBLE_DEVICES: "all"
-      NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
     ports:
       - "8001:8001"
+    environment:
+      - MODEL_NAME=squeezenet1_1
+      - USE_GPU=false
+      - CLASS_MAPPING=data/imagenette2/index_to_class.txt
+      - PORT=8001
     volumes:
       - ./data:/app/data:ro
     networks:
       - model-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
+  # Coordinator API
   coordinator-api:
     build:
       context: .
       dockerfile: dockerfiles/Dockerfile.coordinator
     container_name: coordinator-api
-    environment:
-      PORT: "8002"
-      ONNX_INT8_URL: "http://onnx-int8-api:8000"
-      ONNX_INT32_URL: "http://onnx-int32-api:8000"
-      TORCH_URL: "http://torch-api:8001"
     ports:
       - "8002:8002"
+    environment:
+      - ONNX_INT8_URL=http://onnx-int8-api:8000
+      - ONNX_INT32_URL=http://onnx-int32-api:8000
+      - TORCH_URL=http://torch-api:8001
+      - PORT=8002
     depends_on:
       - onnx-int8-api
       - onnx-int32-api
       - torch-api
     networks:
       - model-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 networks:
   model-network:
     driver: bridge
+

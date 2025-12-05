@@ -1,17 +1,30 @@
 FROM python:3.10-slim
 
+# Set working directory
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y curl && \
-    rm -rf /var/lib/apt/lists/*
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
+# Install FastAPI and dependencies
 RUN pip install --no-cache-dir fastapi uvicorn python-multipart httpx
 
+# Create required directories
 RUN mkdir -p /app/api
 
-COPY api/ /app/api/
+# Copy only the files needed by the Coordinator API
+COPY api/coordinator_api.py /app/api/coordinator_api.py
+COPY api/__init__.py /app/api/__init__.py
 
+# Set environment variables
 ENV PYTHONPATH=/app
+ENV PORT=8002
+
+# Expose port
 EXPOSE 8002
 
+# Run the coordinator API server
 CMD ["python", "api/coordinator_api.py"]
+
