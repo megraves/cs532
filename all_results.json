@@ -1,0 +1,107 @@
+{
+  "int8": {
+    "4": {
+      "mean_ms": 43.73794093800825,
+      "p50_ms": 42.4836479996884,
+      "p95_ms": 57.555407501240545,
+      "p99_ms": 80.61930673065942,
+      "cpu_mean": 0.8621839080459771,
+      "requests": 500,
+      "rps": null,
+      "experiment_dir": "experiments/onnx_int8_batch4_run1_gpu",
+      "summary_json": "experiments/onnx_int8_batch4_run1_gpu/summary.json"
+    },
+    "8": {
+      "mean_ms": 56.229033743962646,
+      "p50_ms": 52.5288279986853,
+      "p95_ms": 90.16854740038977,
+      "p99_ms": 108.76695529932469,
+      "cpu_mean": 0.49441860465116283,
+      "requests": 250,
+      "rps": null,
+      "experiment_dir": "experiments/onnx_int8_batch8_run1_gpu",
+      "summary_json": "experiments/onnx_int8_batch8_run1_gpu/summary.json"
+    },
+    "1": {
+      "mean_ms": 38.688862551468446,
+      "p50_ms": 35.73101549955027,
+      "p95_ms": 64.20495474931158,
+      "p99_ms": 96.26444402139894,
+      "cpu_mean": 2.9894285714285713,
+      "requests": 2000,
+      "rps": null,
+      "experiment_dir": "experiments/onnx_int8_run1_gpu",
+      "summary_json": "experiments/onnx_int8_run1_gpu/summary.json"
+    }
+  },
+  "int32": {
+    "1": {
+      "mean_ms": 40.518628021011864,
+      "p50_ms": 37.4590805004118,
+      "p95_ms": 71.68879380024009,
+      "p99_ms": 95.4312108492013,
+      "cpu_mean": 1.004137931034483,
+      "requests": 2000,
+      "rps": null,
+      "experiment_dir": "experiments/onnx_int32_run1_gpu",
+      "summary_json": "experiments/onnx_int32_run1_gpu/summary.json"
+    },
+    "8": {
+      "mean_ms": 59.508049275951635,
+      "p50_ms": 55.020488500304054,
+      "p95_ms": 93.81721320050926,
+      "p99_ms": 130.3364792497814,
+      "cpu_mean": 1.0216129032258063,
+      "requests": 250,
+      "rps": null,
+      "experiment_dir": "experiments/onnx_int32_batch8_run1_gpu",
+      "summary_json": "experiments/onnx_int32_batch8_run1_gpu/summary.json"
+    },
+    "4": {
+      "mean_ms": 49.47714785802236,
+      "p50_ms": 46.56983100085199,
+      "p95_ms": 75.7087406497703,
+      "p99_ms": 83.44560476080005,
+      "cpu_mean": 0.8193269230769231,
+      "requests": 500,
+      "rps": null,
+      "experiment_dir": "experiments/onnx_int32_batch4_run1_gpu",
+      "summary_json": "experiments/onnx_int32_batch4_run1_gpu/summary.json"
+    }
+  },
+  "torch": {
+    "4": {
+      "mean_ms": 40.2221525161076,
+      "p50_ms": 38.35554199940816,
+      "p95_ms": 62.23149550041853,
+      "p99_ms": 79.86692028840478,
+      "cpu_mean": 0.8371980676328502,
+      "requests": 500,
+      "rps": null,
+      "experiment_dir": "experiments/torch_batch4_run1_gpu",
+      "summary_json": "experiments/torch_batch4_run1_gpu/summary.json"
+    },
+    "1": {
+      "mean_ms": 30.10756755401053,
+      "p50_ms": 27.276202499706415,
+      "p95_ms": 43.01991910233482,
+      "p99_ms": 66.5654740982427,
+      "cpu_mean": 4.485500000000001,
+      "requests": 2000,
+      "rps": null,
+      "experiment_dir": "experiments/torch_run1_gpu",
+      "summary_json": "experiments/torch_run1_gpu/summary.json"
+    },
+    "8": {
+      "mean_ms": 57.59244953618327,
+      "p50_ms": 56.7804590009473,
+      "p95_ms": 82.16531245070652,
+      "p99_ms": 96.38621454236271,
+      "cpu_mean": 0.42346938775510207,
+      "requests": 250,
+      "rps": null,
+      "experiment_dir": "experiments/torch_batch8_run1_gpu",
+      "summary_json": "experiments/torch_batch8_run1_gpu/summary.json"
+    }
+  }
+}

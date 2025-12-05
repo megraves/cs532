@@ -48,8 +48,16 @@ def load_class_mapping(mapping_file: str) -> Dict[int, str]:
             if not line or line.startswith("{") or line.startswith("}"):
                 continue 
 
+            if ":" not in line:
+                continue
+
             key_part, value_part = line.split(":", 1)
-            key = int(key_part.strip())
+            try:
+                key = int(key_part.strip())
+            except ValueError:
+                # Skip lines that do not contain integer keys (e.g., Git LFS pointers)
+                continue
+
             value = value_part.strip().rstrip(",").strip("'\"")
             mapping[key] = value
     return mapping

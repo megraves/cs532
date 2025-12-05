@@ -1,0 +1,347 @@
+
+=============
+== PyTorch ==
+=============
+
+NVIDIA Release 24.09 (build 109656992)
+PyTorch Version 2.5.0a0+b465a58
+Container image Copyright (c) 2024, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+Copyright (c) 2014-2024 Facebook Inc.
+Copyright (c) 2011-2014 Idiap Research Institute (Ronan Collobert)
+Copyright (c) 2012-2014 Deepmind Technologies    (Koray Kavukcuoglu)
+Copyright (c) 2011-2012 NEC Laboratories America (Koray Kavukcuoglu)
+Copyright (c) 2011-2013 NYU                      (Clement Farabet)
+Copyright (c) 2006-2010 NEC Laboratories America (Ronan Collobert, Leon Bottou, Iain Melvin, Jason Weston)
+Copyright (c) 2006      Idiap Research Institute (Samy Bengio)
+Copyright (c) 2001-2004 Idiap Research Institute (Ronan Collobert, Samy Bengio, Johnny Mariethoz)
+Copyright (c) 2015      Google Inc.
+Copyright (c) 2015      Yangqing Jia
+Copyright (c) 2013-2016 The Caffe contributors
+All rights reserved.
+
+Various files include modifications (c) NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+NOTE: The SHMEM allocation limit is set to the default of 64MB.  This may be
+   insufficient for PyTorch.  NVIDIA recommends the use of the following flags:
+   docker run --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 ...
+
+/app/api/onnx_api.py:56: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+Loading ONNX model from: models/SqueezeNet_int8.onnx
+Using GPU: True
+Model loaded successfully!
+Input: name='SqueezeNet::input_0', shape=(N=dynamic, C=224, H=224, W=3)
+Format: NHWC
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:33580 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54740 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54674 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.18.0.1:54678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
